@@ -319,6 +319,21 @@ extension TodayTableViewCell {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+
+                self.setDataBind(SecondTodayWeather(location: "서울, 중구 명동",
+                                                       goOut: GoOut(time: "0700",
+                                                                    temp: -3,
+                                                                    day: true,
+                                                                    image: "맑음"),
+                                                       goHome: GoHome(time: "1900",
+                                                                      temp: 6,
+                                                                      day: false,
+                                                                      image: "맑음"),
+                                                       todayWeather: TodayWeather(humidity: 92,
+                                                                                  sunrise: "0747",
+                                                                                  sunset: "1731",
+                                                                                  fineDust: 3,
+                                                                                  ultraFineDust: 4)))
             }
         }
     }

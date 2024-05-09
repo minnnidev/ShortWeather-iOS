@@ -15,7 +15,18 @@ final class TodayWeatherViewController: BaseLocationViewController {
     
     // MARK: - Properties
     
-    private var todayWeather: TodayWeatherResponse = TodayWeatherResponse(location: "", compareTemp: 0, compareMessage: "", breakingNews: "", fineDust: 0, ultrafineDust: 0, day: true, image: "", currentTemp: 0, minTemp: 0, maxTemp: 0, weatherMessage: "")
+    private var todayWeather: TodayWeatherResponse = TodayWeatherResponse(location: "",
+                                                                          compareTemp: 3,
+                                                                          compareMessage: "어제보다 조금 더워요",
+                                                                          breakingNews: "내일은 더 더워요!",
+                                                                          fineDust: 0,
+                                                                          ultrafineDust: 0,
+                                                                          day: true,
+                                                                          image: "맑음",
+                                                                          currentTemp: 29,
+                                                                          minTemp: 8,
+                                                                          maxTemp: 35,
+                                                                          weatherMessage: "차가운 물을 꼭 챙겨다니세요!")
     private let todayWeatherProvider = MoyaProvider<TodayWeatherService>(plugins: [NetworkLoggerPlugin()])
     
     // MARK: - Initializer
@@ -36,7 +47,7 @@ final class TodayWeatherViewController: BaseLocationViewController {
         setUI()
         setRegister()
         setDelegate()
-        fetchWeather()
+//        fetchWeather()
     }
 }
 
