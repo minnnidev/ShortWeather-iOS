@@ -10,6 +10,11 @@
 미세먼지 농도, 기온 등 수치만 봐서는 알 수 없는 정보들을 좀 더 직관적으로 알아보자!
 
 <br><br>
+##  🌥 service introduction
+<img src="https://user-images.githubusercontent.com/70002218/212327582-b27fd2c9-5286-4ab2-9c13-2bf87efc32a7.png" width= "800">
+
+
+<br><br>
 ##  🫶 Short Weather iOS Developers
 
 <img src="https://user-images.githubusercontent.com/48792069/212343055-ae397b39-205e-4215-a878-8cc9f49f5d28.png" width="200"> | <img src="https://user-images.githubusercontent.com/48792069/212342777-d26b0f33-5271-470a-8d65-eb5b326127e0.png" width="200"> | <img src="https://user-images.githubusercontent.com/48792069/212343484-461a4849-8d4d-4e56-83f6-ff3119787b40.png" width="200"> |
@@ -488,7 +493,7 @@ func printProperty(property: Int) {
 </details>
 
 <details>
-<summary> 💦프로그래미 권장사항 </summary>
+<summary> 💦프로그래밍 권장사항 </summary>
 <div markdown="1">
 
 ### 💧**Type Annotation 사용**
