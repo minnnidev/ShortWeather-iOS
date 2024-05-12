@@ -173,113 +173,113 @@ extension TimeTableViewCell {
     
     private func fetchDetailTemp() {
         detailTempList.removeAll()
-        detailProvider.request(.fetchDetailTemp) { response in
-            switch response {
-            case .success(let result):
-                do {
-                    let status = result.statusCode
-                    if status >= 200 && status < 300 {
-                        guard let data = try result.map(GeneralResponse<[DetailTempResponse]>.self).data else { return }
-                        for dto in data {
-                            self.detailTempList.append(dto.convertToDetailTemp())
-                        }
-                        self.hourCollectionView.reloadData()
-                    }
-                } catch(let error) {
-                    print(error.localizedDescription)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
 
-                let tempData = [
-                    DetailTemp(date: "20230110", time: "0200", temperature: -2, day: false, image: "구름많음"),
-                    DetailTemp(date: "20230110", time: "0300", temperature: -2, day: false, image: "흐림"),
-                    DetailTemp(date: "20230110", time: "0400", temperature: -3, day: false, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "0500", temperature: -2, day: false, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "0600", temperature: -3, day: false, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "0700", temperature: -3, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "0800", temperature: -3, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "0900", temperature: -2, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1000", temperature: 0, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1100", temperature: 2, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1200", temperature: 4, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1300", temperature: 5, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1400", temperature: 6, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1500", temperature: 6, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1600", temperature: 6, day: true, image: "맑음"),
-                    DetailTemp(date: "20230110", time: "1700", temperature: 6, day: true, image: "구름많음"),
-                    DetailTemp(date: "20230110", time: "1800", temperature: 4, day: false, image: "구름많음"),
-                    DetailTemp(date: "20230110", time: "1900", temperature: 3, day: false, image: "구름많음"),
-                    DetailTemp(date: "20230110", time: "2000", temperature: 2, day: false, image: "구름많음"),
-                    DetailTemp(date: "20230110", time: "2100", temperature: 1, day: false, image: "구름많음"),
-                    DetailTemp(date: "20230110", time: "2200", temperature: 1, day: false, image: "흐림"),
-                    DetailTemp(date: "20230110", time: "2300", temperature: 1, day: false, image: "구름많음"),
-                    DetailTemp(date: "20230111", time: "0000", temperature: 0, day: false, image: "구름많음"),
-                    DetailTemp(date: "20230111", time: "0100", temperature: 0, day: false, image: "구름많음")
-                ]
+        let tempData = [
+            DetailTemp(date: "20230110", time: "0200", temperature: -2, day: false, image: "구름많음"),
+            DetailTemp(date: "20230110", time: "0300", temperature: -2, day: false, image: "흐림"),
+            DetailTemp(date: "20230110", time: "0400", temperature: -3, day: false, image: "맑음"),
+            DetailTemp(date: "20230110", time: "0500", temperature: -2, day: false, image: "맑음"),
+            DetailTemp(date: "20230110", time: "0600", temperature: -3, day: false, image: "맑음"),
+            DetailTemp(date: "20230110", time: "0700", temperature: -3, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "0800", temperature: -3, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "0900", temperature: -2, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1000", temperature: 0, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1100", temperature: 2, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1200", temperature: 4, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1300", temperature: 5, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1400", temperature: 6, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1500", temperature: 6, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1600", temperature: 6, day: true, image: "맑음"),
+            DetailTemp(date: "20230110", time: "1700", temperature: 6, day: true, image: "구름많음"),
+            DetailTemp(date: "20230110", time: "1800", temperature: 4, day: false, image: "구름많음"),
+            DetailTemp(date: "20230110", time: "1900", temperature: 3, day: false, image: "구름많음"),
+            DetailTemp(date: "20230110", time: "2000", temperature: 2, day: false, image: "구름많음"),
+            DetailTemp(date: "20230110", time: "2100", temperature: 1, day: false, image: "구름많음"),
+            DetailTemp(date: "20230110", time: "2200", temperature: 1, day: false, image: "흐림"),
+            DetailTemp(date: "20230110", time: "2300", temperature: 1, day: false, image: "구름많음"),
+            DetailTemp(date: "20230111", time: "0000", temperature: 0, day: false, image: "구름많음"),
+            DetailTemp(date: "20230111", time: "0100", temperature: 0, day: false, image: "구름많음")
+        ]
 
-                for data in tempData {
-                    self.detailTempList.append(data)
-                }
-                self.hourCollectionView.reloadData()
-
-            }
+        for data in tempData {
+            self.detailTempList.append(data)
         }
+        self.hourCollectionView.reloadData()
+
+//        detailProvider.request(.fetchDetailTemp) { response in
+//            switch response {
+//            case .success(let result):
+//                do {
+//                    let status = result.statusCode
+//                    if status >= 200 && status < 300 {
+//                        guard let data = try result.map(GeneralResponse<[DetailTempResponse]>.self).data else { return }
+//                        for dto in data {
+//                            self.detailTempList.append(dto.convertToDetailTemp())
+//                        }
+//                        self.hourCollectionView.reloadData()
+//                    }
+//                } catch(let error) {
+//                    print(error.localizedDescription)
+//                }
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
     
     private func fetchDetailRain() {
         detailRainList.removeAll()
-        detailProvider.request(.fetchDetailRain) { response in
-            switch response {
-            case .success(let result):
-                do {
-                    let status = result.statusCode
-                    if status >= 200 && status < 300 {
-                        guard let data = try result.map(GeneralResponse<[DetailRainResponse]>.self).data else { return }
-                        for dto in data {
-                            self.detailRainList.append(dto.convertToDetailRain())
-                        }
-                        self.hourCollectionView.reloadData()
-                    }
-                } catch(let error) {
-                    print(error.localizedDescription)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+        
+        let rainData = [
+            DetailRain(date: "20230110", time: "0200", rain: 0),
+            DetailRain(date: "20230110", time: "0300", rain: 0),
+            DetailRain(date: "20230110", time: "0400", rain: 0),
+            DetailRain(date: "20230110", time: "0500", rain: 0),
+            DetailRain(date: "20230110", time: "0600", rain: 0),
+            DetailRain(date: "20230110", time: "0700", rain: 0),
+            DetailRain(date: "20230110", time: "0800", rain: 0),
+            DetailRain(date: "20230110", time: "0900", rain: 0),
+            DetailRain(date: "20230110", time: "1000", rain: 0),
+            DetailRain(date: "20230110", time: "1100", rain: 0),
+            DetailRain(date: "20230110", time: "1200", rain: 0),
+            DetailRain(date: "20230110", time: "1300", rain: 0),
+            DetailRain(date: "20230110", time: "1400", rain: 0),
+            DetailRain(date: "20230110", time: "1500", rain: 0),
+            DetailRain(date: "20230110", time: "1600", rain: 0),
+            DetailRain(date: "20230110", time: "1700", rain: 20),
+            DetailRain(date: "20230110", time: "1800", rain: 20),
+            DetailRain(date: "20230110", time: "1900", rain: 20),
+            DetailRain(date: "20230110", time: "2000", rain: 20),
+            DetailRain(date: "20230110", time: "2100", rain: 20),
+            DetailRain(date: "20230110", time: "2200", rain: 30),
+            DetailRain(date: "20230110", time: "2300", rain: 20),
+            DetailRain(date: "20230111", time: "0000", rain: 20),
+            DetailRain(date: "20230111", time: "0100", rain: 20)
+        ]
 
-                let rainData = [
-                    DetailRain(date: "20230110", time: "0200", rain: 0),
-                    DetailRain(date: "20230110", time: "0300", rain: 0),
-                    DetailRain(date: "20230110", time: "0400", rain: 0),
-                    DetailRain(date: "20230110", time: "0500", rain: 0),
-                    DetailRain(date: "20230110", time: "0600", rain: 0),
-                    DetailRain(date: "20230110", time: "0700", rain: 0),
-                    DetailRain(date: "20230110", time: "0800", rain: 0),
-                    DetailRain(date: "20230110", time: "0900", rain: 0),
-                    DetailRain(date: "20230110", time: "1000", rain: 0),
-                    DetailRain(date: "20230110", time: "1100", rain: 0),
-                    DetailRain(date: "20230110", time: "1200", rain: 0),
-                    DetailRain(date: "20230110", time: "1300", rain: 0),
-                    DetailRain(date: "20230110", time: "1400", rain: 0),
-                    DetailRain(date: "20230110", time: "1500", rain: 0),
-                    DetailRain(date: "20230110", time: "1600", rain: 0),
-                    DetailRain(date: "20230110", time: "1700", rain: 20),
-                    DetailRain(date: "20230110", time: "1800", rain: 20),
-                    DetailRain(date: "20230110", time: "1900", rain: 20),
-                    DetailRain(date: "20230110", time: "2000", rain: 20),
-                    DetailRain(date: "20230110", time: "2100", rain: 20),
-                    DetailRain(date: "20230110", time: "2200", rain: 30),
-                    DetailRain(date: "20230110", time: "2300", rain: 20),
-                    DetailRain(date: "20230111", time: "0000", rain: 20),
-                    DetailRain(date: "20230111", time: "0100", rain: 20)
-                ]
-
-                for data in rainData {
-                    self.detailRainList.append(data)
-                }
-                self.hourCollectionView.reloadData()
-            }
+        for data in rainData {
+            self.detailRainList.append(data)
         }
+        self.hourCollectionView.reloadData()
+//        detailProvider.request(.fetchDetailRain) { response in
+//            switch response {
+//            case .success(let result):
+//                do {
+//                    let status = result.statusCode
+//                    if status >= 200 && status < 300 {
+//                        guard let data = try result.map(GeneralResponse<[DetailRainResponse]>.self).data else { return }
+//                        for dto in data {
+//                            self.detailRainList.append(dto.convertToDetailRain())
+//                        }
+//                        self.hourCollectionView.reloadData()
+//                    }
+//                } catch(let error) {
+//                    print(error.localizedDescription)
+//                }
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 }
 

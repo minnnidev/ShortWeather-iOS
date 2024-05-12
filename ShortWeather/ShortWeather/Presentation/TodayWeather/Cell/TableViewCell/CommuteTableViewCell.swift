@@ -177,37 +177,36 @@ extension CommuteTableViewCell {
     // MARK: - Network
     
     private func fetchWeatherDetail() {
-        weatherDetailProvider.request(.fetchWeatherDetail) { response in
-            switch response {
-            case .success(let result):
-                do {
-                    let status = result.statusCode
-
-                    if status >= 200 && status < 300 {
-                        guard let data = try result.map(GeneralResponse<DetailWeatherResponse>.self).data else {return}
-                        self.setDataBind(data.convertToDetailWeather())
-                    }
-                } catch(let error) {
-                    print(error.localizedDescription)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-
-                self.setDataBind(SecondTodayWeather(location: "서울, 중구 명동",
-                                                       goOut: GoOut(time: "0700",
-                                                                    temp: -3,
-                                                                    day: true,
-                                                                    image: "맑음"),
-                                                       goHome: GoHome(time: "1900",
-                                                                      temp: 6,
-                                                                      day: false,
-                                                                      image: "맑음"),
-                                                       todayWeather: TodayWeather(humidity: 92,
-                                                                                  sunrise: "0747",
-                                                                                  sunset: "1731",
-                                                                                  fineDust: 3,
-                                                                                  ultraFineDust: 4)))
-            }
-        }
+        self.setDataBind(SecondTodayWeather(location: "서울, 중구 명동",
+                                               goOut: GoOut(time: "0700",
+                                                            temp: -3,
+                                                            day: true,
+                                                            image: "맑음"),
+                                               goHome: GoHome(time: "1900",
+                                                              temp: 6,
+                                                              day: false,
+                                                              image: "맑음"),
+                                               todayWeather: TodayWeather(humidity: 92,
+                                                                          sunrise: "0747",
+                                                                          sunset: "1731",
+                                                                          fineDust: 3,
+                                                                          ultraFineDust: 4)))
+//        weatherDetailProvider.request(.fetchWeatherDetail) { response in
+//            switch response {
+//            case .success(let result):
+//                do {
+//                    let status = result.statusCode
+//
+//                    if status >= 200 && status < 300 {
+//                        guard let data = try result.map(GeneralResponse<DetailWeatherResponse>.self).data else {return}
+//                        self.setDataBind(data.convertToDetailWeather())
+//                    }
+//                } catch(let error) {
+//                    print(error.localizedDescription)
+//                }
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 }
