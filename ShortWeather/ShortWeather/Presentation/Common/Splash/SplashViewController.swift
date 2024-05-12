@@ -60,29 +60,30 @@ extension SplashViewController {
     // MARK: - Network
     
     private func isExistUserInform() {
-        guard let deviceToken = defaults.string(forKey: DataKey.deviceToken) else {
-            UIViewController.modifyRootViewController(FirstInfoViewController())
-            return
-        }
-        APIConstants.deviceToken = deviceToken
-        userProvider.request(.checkUser) { response in
-            switch response {
-            case .success(let result):
-                do {
-                    guard let data = try result.map(GeneralResponse<CheckUserResponse>.self).data else {
-                        UIViewController.modifyRootViewController(FirstInfoViewController())
-                        return
-                    }
-                    APIConstants.jwtToken = data.accessToken
-                    UIViewController.modifyRootViewController(TodayWeatherViewController())
-                } catch(let error){
-                    print(error.localizedDescription)
-                    self.splashImageView.loopMode = .loop
-                }
-            case .failure(let error):
-                self.splashImageView.loopMode = .loop
-                print(error.localizedDescription)
-            }
-        }
+//        guard let deviceToken = defaults.string(forKey: DataKey.deviceToken) else {
+//            UIViewController.modifyRootViewController(FirstInfoViewController())
+//            return
+//        }
+//        APIConstants.deviceToken = deviceToken
+//        userProvider.request(.checkUser) { response in
+//            switch response {
+//            case .success(let result):
+//                do {
+//                    guard let data = try result.map(GeneralResponse<CheckUserResponse>.self).data else {
+//                        UIViewController.modifyRootViewController(FirstInfoViewController())
+//                        return
+//                    }
+//                    APIConstants.jwtToken = data.accessToken
+//                    UIViewController.modifyRootViewController(TodayWeatherViewController())
+//                } catch(let error){
+//                    print(error.localizedDescription)
+//                    self.splashImageView.loopMode = .loop
+//                }
+//            case .failure(let error):
+//                self.splashImageView.loopMode = .loop
+//                print(error.localizedDescription)
+//            }
+//        }
+        UIViewController.modifyRootViewController(TodayWeatherViewController())
     }
 }
